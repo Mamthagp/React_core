@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lifting the state up</title>
+</head>
+<body>
+    
+    <div id="root"></div>
+
+    <script src="../js/react.development.js"></script>
+    <script src="../js/react-dom.development.js"></script>
+    <script src="../js/babel.js"></script>
+
+    <!-- const employees = [
+        { id: 1, name: 'Employee 1', gender: 'male'},
+        { id: 2, name: 'Employee 2', gender: 'male'},
+        { id: 3, name: 'Employee 3', gender: 'male'},
+        { id: 4, name: 'Employee 4', gender: 'male'},
+        { id: 5, name: 'Employee 5', gender: 'female'},
+        { id: 6, name: 'Employee 6', gender: 'female'}
+
+    ] -->
+
+    <script type="text/babel">
+        const rootHandle = document.getElementById('root')
+        
+        const { useState } = React
+
+        // Child component
+        function EmployeeStats(props){
+            const { employees } = props
+            
+            const maleEmployees = employees.filter((emp) => {
+                return emp.gender === 'male'
+            })
+
+            const femaleEmployees = employees.filter((emp) => {
+                return emp.gender === 'female'
+            })
+
+            return(
+                <div>
+                    <h1>Employees statistics</h1>
+                    <table border='1'>
+                        <thead>
+                            <tr>
+                                <th>Gender</th>
+                                <th>Count</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Male</td>
+                                <td>{maleEmployees.length}</td>
+                            </tr>
+                            <tr>
+                                <td>Female</td>
+                                <td>{femaleEmployees.length}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            )
+        }
+
+        // Child component
+        function EmployeesList(props){
+            const { employees, removeEmployee } = props
+            return (
+                <div>
+                    <h1>List of Employees</h1>
+                    <ul>
+                        {
+                            employees.map((emp) => {
+                                return <li key={emp.id}> {emp.name} 
+                                    <button onClick={() => {
+                                        removeEmployee(emp.id)
+                                    }}>Remove</button>
+                                </li>
+                            })
+                        }
+                    </ul>
+                </div>
+            )
+        }
+
+        // Parent component
+        function EmployeeContainer(props){
+            const [employees, setEmployees] = useState([
+                { id: 1, name: 'Employee 1', gender: 'male'},
+                { id: 2, name: 'Employee 2', gender: 'male'},
+                { id: 3, name: 'Employee 3', gender: 'male'},
+                { id: 4, name: 'Employee 4', gender: 'male'},
+                { id: 5, name: 'Employee 5', gender: 'female'},
+                { id: 6, name: 'Employee 6', gender: 'female'}
+            ])
+
+            const removeEmployee = (id) => {
+                const result = employees.filter((emp) => {
+                    return (emp.id !== id)
+                })
+                setEmployees(result)
+            }
+
+            return(
+                <div>
+                    <EmployeesList employees= {employees} removeEmployee={removeEmployee}/>
+                    <EmployeeStats employees= {employees} />
+                </div>
+            )
+        }
+       
+        ReactDOM.render(<EmployeeContainer />, rootHandle)
+        
+    </script>
+</body>
+</html>

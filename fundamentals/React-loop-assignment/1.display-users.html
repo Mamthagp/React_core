@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Display users</title>
+</head>
+<body>
+    
+    <div id="root"></div>
+
+    <script src="../js/react.development.js"></script>
+    <script src="../js/react-dom.development.js"></script>
+    <script src="../js/babel.js"></script>
+
+    <script type="text/babel">
+        const rootHandle = document.getElementById('root')
+        
+        const users =  [
+            { "id": 1, "email": "george@gmail.com", "first_name": "George", "avatar": "https://image.shutterstock.com/image-vector/male-default-avatar-profile-gray-260nw-387037984.jpg" },
+            { "id": 2, "email": "weaver@gmail.com", "first_name": "Weaver", "avatar": "https://image.shutterstock.com/image-vector/male-default-avatar-profile-gray-260nw-387037984.jpg" },
+            { "id": 3, "email": "wong@gmail.com", "first_name": "Wong", "avatar": "https://image.shutterstock.com/image-vector/male-default-avatar-profile-gray-260nw-387037984.jpg" },
+            { "id": 4, "email": "eve@gmail.com", "first_name": "Eve", "avatar": "https://image.shutterstock.com/image-vector/male-default-avatar-profile-gray-260nw-387037984.jpg" }
+        ] 
+
+        const ele = (
+            <div>
+                <h2> Listing users - {users.length} </h2>
+                <table border='1'>
+                    <thead>
+                        <tr>
+                            <th>id</th>
+                            <th>Avatar</th>
+                            <th>First Name</th>
+                            <th>Email</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {
+                            users.map((ele) => {
+                                return (<tr key={ele.id}>
+                                    <td>{ele.id}</td>
+                                    <td><img src={ele.avatar}/></td>
+                                    <td>{ele.first_name}</td>
+                                    <td>{ele.email}</td>
+                                </tr>)
+                            })
+                        }   
+                    </tbody>
+                </table>
+            </div>
+        )
+
+        ReactDOM.render(ele, rootHandle)
+        
+
+    </script>
+</body>
+</html>

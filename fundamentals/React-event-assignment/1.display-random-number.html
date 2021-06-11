@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Display random number </title>
+</head>
+<body>
+
+    <!-- Functional Requirement
+    Create a component called as Generate Random
+    The component renders a button
+    when a user clicks on the button, generate a random number and display to the user using the alert() method
+    the event handler function needs to declared inside the component
+ -->
+    
+    <div id="root"></div>
+
+    <script src="../js/react.development.js"></script>
+    <script src="../js/react-dom.development.js"></script>
+    <script src="../js/babel.js"></script>
+
+    <script type="text/babel">
+        const rootHandle = document.getElementById('root')
+
+        function GenerateNumber(props){
+            return <button onClick={displayRandom}>click me</button>
+        }
+
+        function displayRandom(e){
+            e.preventDefault()
+            let num = Math.round(Math.random() * 100)
+            alert(num)
+        }
+
+        const ele = <GenerateNumber />
+
+        ReactDOM.render(ele, rootHandle)
+        
+    </script>
+</body>
+</html>

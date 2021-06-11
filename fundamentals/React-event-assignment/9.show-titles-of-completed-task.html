@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Find by ID</title>
+</head>
+<body>
+
+    <!-- Functional Requirement
+    Create a component called as CompletedTasks
+    You are provided with an array of tasks, pass them as props to the component
+    The component renders a button " Show Completed Tasks "
+    Once the user clicks on the button, then display only the completed tasks title comma separated
+     -->
+    
+    <div id="root"></div>
+
+    <script src="../js/react.development.js"></script>
+    <script src="../js/react-dom.development.js"></script>
+    <script src="../js/babel.js"></script>
+
+    <script type="text/babel">
+        const rootHandle = document.getElementById('root')
+
+        const tasks = [
+            { id: 1, title: 'Task 1', isCompleted: true },
+            { id: 2, title: 'Task 2', isCompleted: true },
+            { id: 3, title: 'Task 3', isCompleted: false },
+            { id: 4, title: 'Task 4', isCompleted: false },
+            { id: 5, title: 'Task 5', isCompleted: true }
+        ]
+
+        function CompletedTasks(props) {
+            function findRecord(e) {
+                e.preventDefault()
+                const res = props.tasks.filter((ele)=>{
+                    return ele.isCompleted == true
+                })
+
+                const completed = res.map((ele)=>{
+                    return ele.title
+                })
+                alert(completed)
+            }
+            return (
+                <button onClick={findRecord}>Show completed tasks</button>
+            )
+        }
+
+        const ele = <CompletedTasks tasks={tasks}/>
+
+        ReactDOM.render(ele, rootHandle)
+        
+    </script>
+</body>
+</html>

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Total Component with price list</title>
+</head>
+<body>
+
+    <!-- Functional Requirement
+    Create a component called as Total
+    Return react element that will display the total as well as all the prices as a list item
+    You are provided with an array of prices -->
+    
+    <div id="root"></div>
+
+    <script src="../js/react.development.js"></script>
+    <script src="../js/react-dom.development.js"></script>
+    <script src="../js/babel.js"></script>
+
+    <script type="text/babel">
+        const rootHandle = document.getElementById("root")
+
+        const prices = [150,250,200,400]
+
+        function Total(props){
+            let sum = 0
+            for(const ele in prices){
+                sum += prices[ele]
+            }
+            return (
+                <div>
+                    <h2>Total bill = {sum}</h2>
+                    <ul>
+                        {
+                            prices.map((price, id) => {
+                                return <li key={id}>{price}</li>
+                            })
+                        }
+                    </ul>
+                </div>)
+        }
+
+        const ele = <Total prices = {prices}/>
+
+        ReactDOM.render(ele,rootHandle)
+        
+    </script>
+</body>
+</html>
+
+

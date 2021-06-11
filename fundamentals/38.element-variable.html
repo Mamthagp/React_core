@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Element variable for If else for complex data - Conditional rendering</title>
+</head>
+<body>
+    
+    <div id="root"></div>
+
+    <script src="js/react.development.js"></script>
+    <script src="js/react-dom.development.js"></script>
+    <script src="js/babel.js"></script>
+
+    <script type="text/babel">
+        const rootHandle = document.getElementById('root')
+        
+        function App(props){  //Parent component
+            const isLoggedin = false
+            return(
+                <div>
+                    <h2>Welcome to the Website</h2>
+                    <AuthButtons isLoggedin={isLoggedin}/>
+                </div>
+            )
+        } 
+
+        function AuthButtons(props){  //Child component
+            const {isLoggedin} = props 
+            let button
+            if(isLoggedin){
+                button = <button>Logout</button>
+            }else{
+                button = <button>Login</button>
+            }
+            return(
+                <div>
+                    { button }
+                </div>
+            )
+        }
+
+        
+
+        ReactDOM.render(<App />, rootHandle)
+
+
+    </script>
+</body>
+</html>

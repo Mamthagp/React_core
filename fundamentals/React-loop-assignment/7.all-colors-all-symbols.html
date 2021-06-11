@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>All Colors and All Symbols</title>
+</head>
+<body>
+    
+    <div id="root"></div>
+    <!-- Functional Requirements
+You are provided with an array of colors
+The array contains objects, with each object having a property color & symbols
+You need to display all the colors in one list and all the symbols in another list
+The symbols should also be displayed in the color it belongs to -->
+
+    <script src="../js/react.development.js"></script>
+    <script src="../js/react-dom.development.js"></script>
+    <script src="../js/babel.js"></script>
+
+    <script type="text/babel">
+        const rootHandle = document.getElementById('root')
+        
+        const colors = [
+            { color: 'red', symbols: ['energy', 'strength', 'power', 'courage'] },
+            { color: 'blue', symbols: ['loyalty', 'trust', 'stability', 'confidence']},
+            { color: 'orange', symbols: ['excitment', 'fun', 'haste', 'action']},
+            { color: 'yellow', symbols: ['cheerfulness', 'happiness', 'joy', 'optimism']}
+        ]
+
+        const ele = (
+            <div>
+                <h3>All Colors</h3>
+                <ol>
+                    {
+                        colors.map((ele, i) => {
+                            return <li key={i}>{ele.color}</li>
+                        })
+                    }
+                </ol>
+
+                <h3>All Symbols</h3>
+                <ol>
+                    {
+                        colors.map((ele) => {
+                            return ele.symbols.map((k) => {
+                                return <li key={k} style={{color:ele.color}}>{k}</li>
+                            })
+                        })
+                    }
+                </ol>
+                
+            </div>
+        )
+
+        ReactDOM.render(ele, rootHandle)
+
+
+    </script>
+</body>
+</html>

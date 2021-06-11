@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Color Heading List</title>
+</head>
+<body>
+    
+    <div id="root"></div>
+    <!-- Functional Requirements
+You are provided with colors as an object
+Each color is a key and its symbols is the value
+Using the data display all the colors and its symbols in an unordered list -->
+
+    <script src="../js/react.development.js"></script>
+    <script src="../js/react-dom.development.js"></script>
+    <script src="../js/babel.js"></script>
+
+    <script type="text/babel">
+        const rootHandle = document.getElementById('root')
+        
+        const colors = {
+            red: ['energy', 'strength', 'power', 'courage'],
+            blue: ['loyalty', 'trust', 'stability', 'confidence'],
+            orange: ['excitment', 'fun', 'haste', 'action'],
+            yellow: ['cheerfulness', 'happiness', 'joy', 'optimism']
+        }
+
+        const ele = (
+            <div>
+                <ul>
+                    {
+                        Object.keys(colors).map((ele, i) => {
+                            return <li key={i}>{ele} - {colors[ele].join(', ')}</li>
+                        })
+                    }
+                </ul>
+            </div>
+        )
+
+        ReactDOM.render(ele, rootHandle)
+
+       
+
+
+    </script>
+</body>
+</html>

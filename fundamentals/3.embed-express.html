@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Embedding Expression</title>
+</head>
+<body>
+    
+    <div id="root"></div>
+
+    <script src="js/react.development.js"></script>
+    <script src="js/react-dom.development.js"></script>
+    <script src="js/babel.js"></script>
+
+    <script type="text/babel">
+        const rootHandle = document.getElementById('root')
+
+        const ele = <h1> The sum of 2 + 3 = { 2+3 }</h1>
+        ReactDOM.render(ele, rootHandle)
+
+        const user = {
+            firstName : 'Mamtha',
+            lastName : 'GP'
+        }
+        const res = <h1> Hello, { user.firstName.toUpperCase() }</h1>
+        ReactDOM.render(res, rootHandle)
+
+        //Invoke function inside JSX
+
+        const fullName = (user) => {
+            return `${user.firstName} ${user.lastName}`
+        }
+
+        const ele1 = <h1>Hello, {fullName(user)}</h1>
+        ReactDOM.render(ele1, rootHandle)
+
+        
+    </script>
+</body>
+</html>

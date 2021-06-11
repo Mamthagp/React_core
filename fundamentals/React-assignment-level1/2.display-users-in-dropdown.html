@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Display all the users using dropdown</title>
+</head>
+<body>
+    
+    <div id="root"></div>
+
+    <script src="../js/react.development.js"></script>
+    <script src="../js/react-dom.development.js"></script>
+    <script src="../js/babel.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    
+
+    <!-- Functional requirement
+        1. Create a UsersSelect component
+        2. Fetch all the users information from the provided API using the axios package
+        3. Display the data as options within a select tag
+
+    Note -
+        - users api -  https://jsonplaceholder.typicode.com/users
+        - axios - https://unpkg.com/axios/dist/axios.min.js -->
+
+    <script type="text/babel">
+        const rootHandle = document.getElementById('root')
+        const url = 'https://jsonplaceholder.typicode.com/users'
+        
+        const { useState, useEffect } = React
+        
+        function UsersSelect(props) {
+            const [ users, setUsers ] = useState([])
+
+            useEffect(() => {
+                axios.get(url)
+                    .then((response) => {
+                        //console.log(response.data)
+                        const result = response.data
+                        setUsers(result)
+                    })
+            }, [])
+
+            return (
+                <div>
+                    <h1>Users List - {users.length}</h1>
+                    <b>Users </b>
+                    <select> 
+                        <option value=''>Select users</option>
+                        {
+                            users.map((user) => {
+                                return (
+                                    <option value={user.id}>{user.name}</option>
+                                )
+                            })
+                        }
+                    </select>
+                    
+                </div>
+            )
+        }
+
+           
+                
+        ReactDOM.render(<UsersSelect />, rootHandle)
+        
+    </script>
+</body>
+</html>

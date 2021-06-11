@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pass Data from child to parent using callback function </title>
+</head>
+<body>
+
+    
+    <div id="root"></div>
+
+    <script src="js/react.development.js"></script>
+    <script src="js/react-dom.development.js"></script>
+    <script src="js/babel.js"></script>
+
+    <script type="text/babel">
+        const rootHandle = document.getElementById('root')
+        
+        function Parent(props){
+            const name1 = 'Ross'
+            const name2 = 'Jack'
+
+            //callback
+            function getHugs(name) {
+                alert(`${name} has hugged parent`)
+            }
+            return(
+                <div>
+                    <h2>Parent component</h2>
+                    <Child name={name1} func={getHugs} />
+                    <Child name={name2} func={getHugs} /> 
+                </div>
+            )
+        }
+
+        function Child(props) {
+            console.log(props)
+            return (
+                <div>
+                    <h2>Child component - {props.name}</h2>
+                    <button onClick={()=>{
+                        props.func(props.name)
+                    }}>Hug</button>
+                </div>
+            )
+        }
+
+        // Rendering parent component to the rootHandle
+        ReactDOM.render(<Parent />, rootHandle)
+        
+    </script>
+</body>
+</html>

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Random element and lists</title>
+</head>
+<body>
+
+    <!-- Functional Requirement
+    Create a component called as RandomElement
+    You are provided with an array of fruits which you will pass as props to the component
+    The component renders a button " Pick random " and all the fruits as a list
+    When the user clicks on the button, pick a random element from the array and display using the alert() method
+    The event handler function needs to be declared inside the component
+        -->
+    
+    <div id="root"></div>
+
+    <script src="../js/react.development.js"></script>
+    <script src="../js/react-dom.development.js"></script>
+    <script src="../js/babel.js"></script>
+
+    <script type="text/babel">
+        const rootHandle = document.getElementById('root')
+
+        const fruits = ['apple', 'water melon', 'strawberry', 'kiwi']
+
+        function RandomElement(props){
+            return (
+                    <div>
+                        <button onClick={()=>{alert(fruits[Math.round(Math.random() * props.fruits.length)])}}> pick random</button> 
+                        <ul>
+                            {
+                                props.fruits.map((ele)=>{
+                                    return <li>{ele}</li>
+                                })
+                            }
+                        </ul>
+                    </div>
+            )
+
+            //or
+            // function randomFruits(e){
+            //     e.preventDefault()
+            //     const res = fruits[Math.round(Math.random() * props.fruits.length)]
+            //     alert(res)
+            // }
+
+            
+        }
+
+        const ele = <RandomElement fruits={fruits}/>
+
+        ReactDOM.render(ele, rootHandle)
+        
+    </script>
+</body>
+</html>

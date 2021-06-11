@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reverse a string</title>
+</head>
+<body>
+    
+    <div id="root"></div>
+
+    <script src="../js/react.development.js"></script>
+    <script src="../js/react-dom.development.js"></script>
+    <script src="../js/babel.js"></script>
+
+    <!-- 
+        1. Create a component called as ReverseStr
+        2. maintain a string value in the state
+        3. display the state value in a h1 tag
+        4. have a button on the page
+        5. when the user clicks on the button, reverse the string and display 
+    -->
+
+    <script type="text/babel">
+        const rootHandle = document.getElementById('root')
+        
+        const { useState } = React
+
+        // we need to maintain state within this to keep track the value and then that value should change based on the user interaction hence the state value is very imp
+        function ReverseStr(props){
+            let [str, setString] = useState('dct academy')
+            
+            const strReverse = () =>{
+                // for loop this is most important approach
+                
+                // let res = ''
+                // for(let i=str.length - 1; i>=0; i--){
+                //     res += str[i]
+                // }
+                // setString(res)
+                
+                //methods
+                const newStr = str.split('').reverse().join('')
+                setString(newStr)
+
+                // const reverseStr = () => {
+                //     const newStr = [...str]
+                //     const res = newStr.reverse()
+                //     setStr(res)
+                // }
+            }
+
+            return(
+                <div>
+                    <h1>Reverse a string</h1>
+                    <h2>{str}</h2>
+                    <button onClick={strReverse}>reverse</button>
+                </div>
+            )
+        }
+
+        ReactDOM.render(<ReverseStr />, rootHandle)
+        
+    </script>
+</body>
+</html>

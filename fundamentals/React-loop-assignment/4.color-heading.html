@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Color Heading</title>
+</head>
+<body>
+<!-- 
+    Functional Requirements
+You are provided with an array of colors
+The array contains objects, with each object having a property color & symbols
+You will need to display the color name in heading tag (h3) and all the symbols need to be displayed in a paragaraph (p) -->
+    
+    <div id="root"></div>
+
+    <script src="../js/react.development.js"></script>
+    <script src="../js/react-dom.development.js"></script>
+    <script src="../js/babel.js"></script>
+
+    <script type="text/babel">
+        const rootHandle = document.getElementById('root')
+        
+        const colors = [
+            { color: 'red', symbols: ['energy', 'strength', 'power', 'courage'] },
+            { color: 'blue', symbols: ['loyalty', 'trust', 'stability', 'confidence']},
+            { color: 'orange', symbols: ['excitment', 'fun', 'haste', 'action']},
+            { color: 'yellow', symbols: ['cheerfulness', 'happiness', 'joy', 'optimism']}
+        ]
+
+        const ele = (
+            <div>
+                <h2>Colors and it's symbol</h2>
+                <div>
+                    { colors.map((ele, i) => {
+                        return (
+                            <div key = {i}>
+                                <h2> {ele.color.toUpperCase()}</h2>
+                                <p>{ele.symbols.join(', ')}</p>
+                            </div>
+                        )
+                    })}
+                </div>
+            </div>
+        )
+
+        ReactDOM.render(ele, rootHandle)
+
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Show hide para</title>
+</head>
+<body>
+    
+    <div id="root"></div>
+
+    <script src="../js/react.development.js"></script>
+    <script src="../js/react-dom.development.js"></script>
+    <script src="../js/babel.js"></script>
+
+    <!-- 
+        1. Create a TextDisplay component
+        2. maintain state 'status' as a boolean
+        3. Display some text along with button
+        4. when the status is true
+                - then display text
+                - the button text needs to be hide
+        5. when the status false 
+                - then don't display text
+                - the button text needs to be show
+        6. Add an event handler, which even clicked will change status to it's opposite value
+    -->
+
+
+    <script type="text/babel">
+        const rootHandle = document.getElementById('root')
+        
+        const { useState } = React
+
+        function TextDisplay(props){
+            const [status, setStatus] = useState(true)
+
+            //callback function
+            const toggle = () => {
+                const res = !status
+                setStatus(res)
+            }
+
+            return (
+                <div>
+                    { (status) && (<p >Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatum at libero sequi consequuntur repudiandae ea architecto quae dolores sunt illum saepe, quis quaerat doloribus inventore soluta fuga omnis. Odit, est.</p>)}
+                    <button onClick={toggle}>{(status) ? 'hide' : 'show'}</button>
+                </div>
+                
+            )
+        }
+       
+        ReactDOM.render(<TextDisplay />, rootHandle)
+        
+    </script>
+</body>
+</html>

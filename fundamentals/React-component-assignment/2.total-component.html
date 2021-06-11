@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Total Component</title>
+</head>
+<body>
+
+    <!-- Functional Requirement
+    Create a component called as Total
+    Pass prices as a prop value to the component
+    Return a h1 element, which shows the total of prices
+    You are given an array of values -->
+    
+    <div id="root"></div>
+
+    <script src="../js/react.development.js"></script>
+    <script src="../js/react-dom.development.js"></script>
+    <script src="../js/babel.js"></script>
+
+    <script type="text/babel">
+        const rootHandle = document.getElementById("root")
+
+        const prices = [150,250,200,400,250]
+
+        function Total(props){
+            let sum = 0
+            for(const ele in props.prices){
+                sum += props.prices[ele]
+            }
+            return <h1>Total bill = {sum}</h1>
+        }
+
+        const ele = <Total prices={prices}/>
+
+        ReactDOM.render(ele,rootHandle)
+
+
+    </script>
+</body>
+</html>

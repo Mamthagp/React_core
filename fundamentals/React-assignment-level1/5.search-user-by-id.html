@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search user by ID</title>
+</head>
+<body>
+    
+    <div id="root"></div>
+
+    <script src="../js/react.development.js"></script>
+    <script src="../js/react-dom.development.js"></script>
+    <script src="../js/babel.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+
+    <!-- Functional Requirements
+    1. The user is provided with a form, where he can input the user id and get the data from the API Server
+    2. Fetch only the user by the id from the provided API using the axios package.
+    3. Display it's data like the name, email and city below
+
+    Note -
+        - analyse the response you get from the server, when the record is found and when its not found
+        - users api - https://jsonplaceholder.typicode.com/users/:id
+        - axios - https://unpkg.com/axios/dist/axios.min.js
+        - if there is an error, you will need to use a catch method while working with promises -->
+
+    <script type="text/babel">
+        const rootHandle = document.getElementById('root')
+
+        const { useState } = React
+       
+        function UserList(props){
+            const [userId, setUserId ] = useState('')
+            const [ url, setUrl ] = useState('')
+            const [ details, setDetails ] = useState('')
+            const [ formErrors, setFormErrors ] = useState({})
+            const error = {}
+
+            const handleChange = (e) => {
+                let newId = e.target.value
+                setUserId(newId)
+                const newUrl = "https://jsonplaceholder.typicode.com/users/" + newId
+                setUrl(newUrl)
+            }
+
+            const validate = () => {
+                if(userId == '' || Number(userId) != userId){
+                    error.status = 'Please enter valid ID'
+                    setFormErrors(error)
+                    return false
+                }else{
+                    return true
+                }
+            }
+
+            const handleSubmit = (e) => {
+                e.preventDefault()
+                if(validate()){
+                    axios.get(url).then((response) => {
+                        const { data } = response 
+                        const newDetails = `${data.name} - ${data.email} - ${data.address.city}`
+                        setDetails(newDetails)
+                        setFormErrors(error)
+                    }).catch( err => {
+                        if(err.response){
+                            error.status = 'record not found'
+                            setFormErrors(error)
+                        }
+                    })
+                }
+            }
+
+
+            return(
+                <div>
+                    <form onSubmit={handleSubmit}>
+                        <label>Enter your ID</label>
+                        <input type='text' value={userId} onChange={handleChange}/>
+                        <input type='submit' value='search' />
+                    </form>
+                    {
+                        formErrors.status ? (
+                            <p style={{color: 'red'}}>{formErrors.status}</p>
+                        ) : (
+                            <h1> {details} </h1>
+                        )
+                    }
+                </div>
+            )
+        }
+
+        ReactDOM.render(<UserList />, rootHandle)
+        
+        
+    </script>
+</body>
+</html>

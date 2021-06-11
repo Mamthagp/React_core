@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Multiple User Information Component</title>
+</head>
+<body>
+    
+    <div id="root"></div>
+
+    <script src="js/react.development.js"></script>
+    <script src="js/react-dom.development.js"></script>
+    <script src="js/babel.js"></script>
+
+    <script type="text/babel">
+        const rootHandle = document.getElementById('root')
+        
+        const user1 = {
+            first_name: 'Mamtha',
+            email: 'mamthagp.93@gmail.com',
+            avatar: 'https://i.picsum.photos/id/1/367/267.jpg?hmac=jZdc5TviQPVhxLyvyU8siO-I5FMVXVZpBhsBYKbBJpM'
+        }
+
+        const user2 = {
+            first_name: 'Rakshu',
+            email: 'rakshu@gmail.com',
+            avatar: 'https://image.shutterstock.com/image-vector/male-default-avatar-profile-gray-260nw-387037984.jpg'
+        }
+
+
+        function User(props){
+            return (
+                <div>
+                    <img src={props.image}/>
+                    <h3>{props.fName}</h3>
+                    <hr />
+                </div>
+            )
+        }
+
+        const ele = (
+            <div>
+                <User image = {user1.avatar} fName={user1.first_name}/>
+                <User image = {user2.avatar} fName={user2.first_name}/>
+            </div>
+            )
+
+        ReactDOM.render(ele, rootHandle)
+        
+    </script>
+</body>
+</html>

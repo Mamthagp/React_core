@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Re-rendering</title>
+</head>
+<body>
+    
+    <div id="root"></div>
+
+    <script src="../js/react.development.js"></script>
+    <script src="../js/react-dom.development.js"></script>
+    <script src="../js/babel.js"></script>
+
+    <script type="text/babel"> 
+        const rootHandle = document.getElementById('root')
+        
+        const { useState, useEffect } = React
+
+        function BookTickets(props){
+            const [count, setCount] = useState(0)
+
+            useEffect(() => {
+                //alert('Component rendered')
+                document.title = `You have booked ${count} tickets.`
+            })
+
+            const increment = () => {
+                setCount(count+1)
+            }
+
+            return(
+                <div>
+                    <h2>You have booked {count} tickets.</h2>
+                    <button onClick={increment}>+1</button>
+                </div>
+            )
+        }
+
+        ReactDOM.render(<BookTickets />, rootHandle)
+       
+        
+        
+    </script>
+</body>
+</html>

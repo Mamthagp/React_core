@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Show hide using parentchild component</title>
+</head>
+<body>
+    
+    <div id="root"></div>
+
+    <script src="../js/react.development.js"></script>
+    <script src="../js/react-dom.development.js"></script>
+    <script src="../js/babel.js"></script>
+
+    <!-- 
+        1. Create 2 component App and TextDisplay
+        2. Articles is present inside the App component
+        3. Pass each article as prop to TextDisplay component
+        4. Maintain state 'status' inside the TextDisplay
+        5. Display text recieved via props along with button
+        6. when the status is true
+                - then display text
+                - the button text needs to be hide - article title
+        7. when the status false 
+                - then don't display text
+                - the button text needs to be show - article title
+        8. Add an event handler, which even clicked will change status to it's opposite value
+    -->
+
+
+    <script type="text/babel">
+        const rootHandle = document.getElementById('root')
+        
+        const { useState } = React
+
+        // Child component
+        function TextDisplay(props){
+            const [status, setStatus] = useState(true) 
+            const {title, body} = props
+
+            const toggle = () =>{
+                //setStatus(!status)
+                const res = !status
+                setStatus(res)
+            }
+
+            return(
+                <div>
+                    {status && <p>{body}</p>}
+                    <button onClick ={toggle}>{status ? 'Hide' : 'Show'} - {title}</button>
+                                
+                </div>
+            )
+        }
+
+        // Parent component
+        function App(props){
+            const data = [
+                { title : 'React article', body:'React js is an open-source JavaScript library that is used for building user interfaces specifically for single-page applications.'},
+                { title : 'JS article', body:'JS is an open-source JavaScript library that is used for building user interfaces specifically for single-page applications.'},
+                { title : 'Node JS article', body:'Node js is an open-source JavaScript library that is used for building user interfaces specifically for single-page applications.'}
+            ]
+            
+            return(
+                <div>
+                    <h1>Listing articles</h1>
+                    {
+                        data.map((article, i) => {
+                            return <TextDisplay key={i} {...article}/>
+                        })
+                    }
+                    
+                </div>
+            )
+        }
+       
+        ReactDOM.render(<App />, rootHandle)
+        
+    </script>
+</body>
+</html>

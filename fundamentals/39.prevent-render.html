@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prevent render - Conditional rendering</title>
+</head>
+<body>
+    
+    <div id="root"></div>
+
+    <script src="js/react.development.js"></script>
+    <script src="js/react-dom.development.js"></script>
+    <script src="js/babel.js"></script>
+
+    <script type="text/babel">
+        const rootHandle = document.getElementById('root')
+
+        function App(props){
+            const isDue = false
+            return(
+                <div>
+                    <h1>Collect Payment</h1>
+                    <PaymentInfo isDue={isDue}/>
+                </div>
+            )
+        }
+        function PaymentInfo(props){
+            const {isDue} = props
+            if(!isDue){
+                return null
+            }
+            return(
+                <div>
+                    {
+                       <h2>Payment info</h2>
+                    }
+                </div>
+            )
+        }
+        
+        ReactDOM.render(<App />, rootHandle
+        )
+
+    </script>
+</body>
+</html>

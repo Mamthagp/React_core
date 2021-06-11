@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Current Time</title>
+</head>
+<body>
+
+    <!-- Functional Requirement
+    Create a Time Component
+    The purpose of the time component is to return the current system time in the format of (HH:MM am/pm)
+    Return a h1 element from the component -->
+    
+    <div id="root"></div>
+
+    <script src="../js/react.development.js"></script>
+    <script src="../js/react-dom.development.js"></script>
+    <script src="../js/babel.js"></script>
+
+    <script type="text/babel">
+        const rootHandle = document.getElementById("root")
+
+        function Time(props){
+            const today = new Date()
+            // console.log(today)
+            // const h = today.getHours()
+            // console.log(h)
+            // const m = today.getMinutes()
+            // console.log(m)
+            const hour = (today.getHours() > 12 ? today.getHours()-12 : today.getHours())
+            const amOrPm = (today.getHours() >= 12 ? 'PM' : 'AM')
+            return (
+                <h1>{hour} : {today.getMinutes()} {amOrPm}</h1>
+            )
+        }
+
+        const ele = <Time />
+
+        ReactDOM.render(ele,rootHandle)
+        
+    </script>
+</body>
+</html>
+
+

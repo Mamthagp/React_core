@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inline If - Conditional rendering</title>
+</head>
+<body>
+    
+    <div id="root"></div>
+
+    <script src="js/react.development.js"></script>
+    <script src="js/react-dom.development.js"></script>
+    <script src="js/babel.js"></script>
+
+    <script type="text/babel">
+        const rootHandle = document.getElementById('root')
+        
+        function App(props){  //Parent component
+            const user = {
+                id: 1,
+                name: 'user1',
+                role: 'student'
+            }
+
+            return(
+                <div>
+                    <h2>Student management System</h2>
+                    <StudentLinks user={user}/>
+                </div>
+            )
+        }
+
+        function StudentLinks(props){  //Child component
+            return(
+                <div>
+                    <a href="/student/show/1">show </a><br/>
+                    {
+                        props.user.role === 'admin' && <a href="/student/delete/1">delete</a>
+                    }
+                    
+                </div>
+            )
+        }
+
+        
+
+        ReactDOM.render(<App />, rootHandle)
+
+    </script>
+</body>
+</html>

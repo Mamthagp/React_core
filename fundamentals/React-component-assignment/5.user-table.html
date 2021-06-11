@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Table</title>
+</head>
+<body>
+
+    <!-- Functional Requirement
+    Create a component called as UserTable
+    You are provided with a set of user information
+    Pass the users information as props to the component
+    Using the data return a table element from the component -->
+    
+    <div id="root"></div>
+
+    <script src="../js/react.development.js"></script>
+    <script src="../js/react-dom.development.js"></script>
+    <script src="../js/babel.js"></script>
+
+    <script type="text/babel">
+        const rootHandle = document.getElementById("root")
+
+        const users = [
+            { id: 1, name: 'user1', email: 'u1@gmail.com'},
+            { id: 2, name: 'user2', email: 'u2@gmail.com' },
+            { id: 3, name: 'user3', email: 'u3@gmail.com' }
+        ]
+
+        function UserTable(props){
+            return (
+                <table border="1">
+                    <thead>
+                        <tr>
+                            <th>Id</th>
+                            <th>Name</th>
+                            <th>Email</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                            {
+                                props.usersDetails.map((user) => {
+                                    return (
+                                        <tr key={user.id}>
+                                            <td>{user.id}</td>
+                                            <td>{user.name}</td>
+                                            <td>{user.email}</td>
+                                        </tr>
+                                    )
+                                })
+                            }
+                    </tbody>
+                </table>
+            )
+        }
+
+        const ele = <UserTable usersDetails={users}/>
+
+        ReactDOM.render(ele,rootHandle)
+        
+    </script>
+</body>
+</html>
+
+

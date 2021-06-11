@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Change background</title>
+</head>
+<body>
+    
+    <div id="root"></div>
+
+    <script src="../js/react.development.js"></script>
+    <script src="../js/react-dom.development.js"></script>
+    <script src="../js/babel.js"></script>
+
+    <!-- 
+    1. You are provided with a list of colors
+    2. Display the colors in a drop down
+    3. When the user selects a color, change the background of the page to the selected colors.
+    4. The colors are red, green, yellow, black, pink, orange -->
+
+    <script type="text/babel">
+        const rootHandle = document.getElementById('root')
+        
+        const { useState } = React
+
+        function ChangeBg(props){
+            const [colors, setColors ] = useState(['red', 'green', 'yellow', 'pink', 'black', 'orange'])
+            const [selectColor, setSelectColor ] = useState([]) 
+
+            const handleChange = (e) => {
+                setSelectColor(e.target.value)
+            }
+
+            document.body.style.background = selectColor
+
+            return(
+                
+                <div>
+                <h1>Change background</h1>
+                <select onChange={handleChange}>
+                    <option value=''>Select</option>
+                    {
+                        colors.map((color, id) => {
+                            return <option key={id} value={color}> {color}</option>
+                        })
+                    }
+                </select>
+                </div>
+            )
+        }
+
+        ReactDOM.render(<ChangeBg />, rootHandle)
+       
+        
+        
+    </script>
+</body>
+</html>

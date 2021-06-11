@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Make a tag</title>
+</head>
+<body>
+
+    <!-- Functional Requirement
+    Create a component called as TagGenerator
+    The component renders a button " Enter a string "
+    Once the user clicks on the button, take the user input using the browser prompt() method
+    Generate a hash tag and display back to the user using the alert() method
+    The event handler function has to be declared inside the component
+            -->
+    
+    <div id="root"></div>
+
+    <script src="../js/react.development.js"></script>
+    <script src="../js/react-dom.development.js"></script>
+    <script src="../js/babel.js"></script>
+
+    <script type="text/babel">
+        const rootHandle = document.getElementById('root')
+
+        const str = 'dct academy' 
+
+        function TagGenerator(props){
+            function generateStr(){
+                const inputStr = prompt("Enter a String");
+                const addString = inputStr.split(' ').map((ele) => {
+                                                        return ele.charAt(0).toUpperCase() + ele.substr(1)})
+                .join('')
+                const newTag = `#${addString}`
+                alert(newTag)
+            }  
+            return (
+                <button onClick={generateStr}>generate string</button>
+            )
+        }
+
+        const ele = <TagGenerator str/>
+
+
+        ReactDOM.render(ele, rootHandle)
+        
+    </script>
+</body>
+</html>

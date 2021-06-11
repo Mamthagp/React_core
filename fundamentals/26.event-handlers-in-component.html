@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Events </title>
+</head>
+<body>
+    
+    <div id="root"></div>
+
+    <script src="js/react.development.js"></script>
+    <script src="js/react-dom.development.js"></script>
+    <script src="js/babel.js"></script>
+
+    <script type="text/babel">
+        const rootHandle = document.getElementById('root')
+        
+        function GreetUser(props){  // Components defined
+            
+            function alertMe(){ //callback function which work for event handlers and also going to be inside the components
+                alert(`Hi there, ${props.name}`)
+            }
+            return ( // returning react element
+                <button onClick = {alertMe} style={{ color:'white', backgroundColor:'green'}}> Click me!! </button>
+                // This is | where we are listening for the events
+            )
+        }
+
+        const ele = <GreetUser name='Mamtha'/> // We are invoking the GreetUser function here using tag format
+
+        ReactDOM.render(ele, rootHandle)
+        
+    </script>
+</body>
+</html>
